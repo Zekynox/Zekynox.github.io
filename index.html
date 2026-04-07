@@ -128,6 +128,11 @@
       margin-top: 1.7rem;
     }
 
+    button.button {
+      font: inherit;
+      cursor: pointer;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -338,7 +343,7 @@
         </p>
         <div class="cta-row">
           <a class="button primary" href="#contact">Contact Me</a>
-          <a class="button secondary" href="mailto:ezekiel@ezdavis.com">Email Directly</a>
+          <button class="button secondary" id="copyEmailBtn" type="button">Copy Email</button>
         </div>
       </div>
 
@@ -355,7 +360,7 @@
           </div>
           <div class="stat">
             <span class="label">Total Time</span>
-            <span class="value">66+</span>
+            <span class="value">68</span>
           </div>
           <div class="stat">
             <span class="label">Next Objective</span>
@@ -407,7 +412,7 @@
           <ul>
             <li>Private Pilot Certificate</li>
             <li>Third-Class Medical</li>
-            <li>66+ total flight hours</li>
+            <li>68+ total flight hours</li>
             <li>Focused on next-phase training and structured progression</li>
           </ul>
         </div>
@@ -473,5 +478,27 @@
       © 2026 Ezekiel Davis. All rights reserved.
     </div>
   </footer>
+  <script>
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const emailAddress = 'ezekiel@ezdavis.com';
+
+    if (copyEmailBtn) {
+      copyEmailBtn.addEventListener('click', async () => {
+        const originalText = copyEmailBtn.textContent;
+        try {
+          await navigator.clipboard.writeText(emailAddress);
+          copyEmailBtn.textContent = 'Email Copied';
+          setTimeout(() => {
+            copyEmailBtn.textContent = originalText;
+          }, 1800);
+        } catch (error) {
+          copyEmailBtn.textContent = 'Copy Failed';
+          setTimeout(() => {
+            copyEmailBtn.textContent = originalText;
+          }, 1800);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
