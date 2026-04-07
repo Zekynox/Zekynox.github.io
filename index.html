@@ -1,55 +1,477 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ezekiel Davis</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #0b1d2a;
-            color: white;
-            text-align: center;
-        }
-        header {
-            padding: 60px 20px;
-        }
-        h1 {
-            font-size: 2.5em;
-        }
-        p {
-            color: #cfd8dc;
-        }
-        .section {
-            padding: 40px 20px;
-        }
-        a {
-            color: #4fc3f7;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ezekiel Davis | Pilot Portfolio</title>
+  <meta name="description" content="Official portfolio site for Ezekiel Davis, private pilot and aspiring airline pilot." />
+  <style>
+    :root {
+      --bg: #081726;
+      --bg-2: #0d2235;
+      --panel: rgba(255, 255, 255, 0.06);
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --text: #f4f7fb;
+      --muted: #b4c3d3;
+      --accent: #5cc8ff;
+      --accent-2: #9fe4ff;
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(92, 200, 255, 0.12), transparent 30%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover { color: white; }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 23, 38, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: white;
+      font-size: 1.02rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+    }
+
+    .hero {
+      min-height: 84vh;
+      display: flex;
+      align-items: center;
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid rgba(92, 200, 255, 0.28);
+      background: rgba(92, 200, 255, 0.09);
+      color: var(--accent-2);
+      border-radius: 999px;
+      font-size: 0.84rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p.lead {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 1.3rem 0 0;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.7rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+      border: 1px solid transparent;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent), #7ed8ff);
+      color: #052033;
+      box-shadow: var(--shadow);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.04);
+      color: white;
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .hero-card,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 1.4rem;
+    }
+
+    .hero-card h3,
+    .panel h3 {
+      margin-top: 0;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat .label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat .value {
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    section {
+      padding: 1rem 0 5rem;
+    }
+
+    .section-heading {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 0.45rem;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+
+    .panel {
+      padding: 1.3rem;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--muted);
+    }
+
+    .panel ul {
+      margin: 0.7rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-item strong {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      color: white;
+    }
+
+    .contact-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer {
+      padding: 1.5rem 0 3rem;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 4rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-row {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Ezekiel Davis</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<header>
-    <h1>Ezekiel Davis</h1>
-    <p>Aspiring Airline Pilot</p>
-</header>
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Pilot Portfolio</div>
+        <h1>Private Pilot.<br>Aviation-Focused.<br>Building Forward.</h1>
+        <p class="lead">
+          I’m Ezekiel Davis, a private pilot building time, discipline, and professional experience toward a long-term airline career. This site is my central portfolio for aviation progress, leadership, and future training milestones.
+        </p>
+        <div class="cta-row">
+          <a class="button primary" href="#contact">Contact Me</a>
+          <a class="button secondary" href="mailto:ezekiel@ezdavis.com">Email Directly</a>
+        </div>
+      </div>
 
-<div class="section">
-    <h2>About Me</h2>
-    <p>Private Pilot working toward ATP certification. Focused on building hours, leadership, and aviation excellence.</p>
-</div>
+      <div class="hero-card">
+        <h3>Flight Snapshot</h3>
+        <div class="stats">
+          <div class="stat">
+            <span class="label">Certificates</span>
+            <span class="value">PPL</span>
+          </div>
+          <div class="stat">
+            <span class="label">Medical</span>
+            <span class="value">Current</span>
+          </div>
+          <div class="stat">
+            <span class="label">Total Time</span>
+            <span class="value">66+</span>
+          </div>
+          <div class="stat">
+            <span class="label">Next Objective</span>
+            <span class="value">Instrument</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<div class="section">
-    <h2>Flight Progress</h2>
-    <p>66+ Total Flight Hours</p>
-</div>
+  <section id="about">
+    <div class="container">
+      <div class="section-heading">
+        <h2>About Me</h2>
+        <p>
+          I’m pursuing aviation with a long-term mindset: professional growth, leadership, sound decision-making, and consistent forward progress. Alongside flying, I’ve also developed experience in team leadership, customer-facing operations, and professional communication.
+        </p>
+      </div>
 
-<div class="section">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:ezekiel@ezdavis.com">ezekiel@ezdavis.com</a></p>
-</div>
+      <div class="grid-3">
+        <div class="panel">
+          <h3>Aviation Focus</h3>
+          <p>Building experience toward advanced ratings and a professional pilot path with an emphasis on discipline, safety, and long-term development.</p>
+        </div>
+        <div class="panel">
+          <h3>Professional Mindset</h3>
+          <p>Committed to reliability, polished communication, and representing aviation with maturity both in the cockpit and in professional settings.</p>
+        </div>
+        <div class="panel">
+          <h3>Leadership</h3>
+          <p>Experienced in leadership and service-oriented roles that have strengthened decision-making, accountability, and composure under pressure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="experience">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Experience & Progress</h2>
+        <p>
+          A concise overview of current training status and the qualities I’m building alongside flight time.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Current Status</h3>
+          <ul>
+            <li>Private Pilot Certificate</li>
+            <li>Third-Class Medical</li>
+            <li>66+ total flight hours</li>
+            <li>Focused on next-phase training and structured progression</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Professional Strengths</h3>
+          <ul>
+            <li>Leadership experience</li>
+            <li>Operations and front-desk aviation exposure</li>
+            <li>Strong customer communication</li>
+            <li>Long-term career planning mindset</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Career Timeline</h2>
+        <p>
+          A forward-looking snapshot of the path I’m intentionally building in aviation.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>Private Pilot Certificate</strong>
+          <div>Completed and currently building flight experience.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Instrument Rating</strong>
+          <div>Next major milestone, with focus on improving precision, judgment, and weather capability.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Commercial & Instructor Path</strong>
+          <div>Planned progression into advanced certificates and structured hour-building.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>Airline Career</strong>
+          <div>Long-term goal centered on professional excellence, consistency, and upward progression in the industry.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="panel contact-box">
+        <div>
+          <h3>Contact</h3>
+          <p>For networking, professional opportunities, or aviation-related contact, reach me directly by email.</p>
+        </div>
+        <div>
+          <a class="button primary" href="mailto:ezekiel@ezdavis.com">ezekiel@ezdavis.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 Ezekiel Davis. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
