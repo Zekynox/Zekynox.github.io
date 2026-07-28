@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="783" height="403" viewBox="0 0 783 403"
+     role="img" aria-labelledby="title desc">
+  <title id="title">EZ Aircraft Care monogram</title>
+  <desc id="desc">Single-color scalable EZ monogram with an aerodynamic negative-space slash.</desc>
+  <g fill="#000000" fill-rule="evenodd">
+    <path d="M 456 76 L 390 136 L 594 137 L 511 188 L 421 259 L 355 327 L 316 388 L 401 308 L 494 238 L 603 169 L 693 123 L 476 272 L 336 392 L 658 394 L 716 331 L 516 330 L 774 75 Z M 693 123 L 694 122 L 695 122 L 696 123 L 695 124 L 694 124 Z M 503 8 L 159 8 L 8 367 L 296 367 L 352 306 L 124 305 L 167 209 L 312 209 L 375 151 L 192 151 L 221 77 L 416 75 Z"/>
+  </g>
+</svg>
