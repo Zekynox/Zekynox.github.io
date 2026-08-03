@@ -202,7 +202,9 @@
             </ul>
           </div>
 
-          <form class="interest-form" id="design-partner-form">
+          <form class="interest-form" id="design-partner-form" action="https://formspree.io/f/xykrrwda" method="POST">
+            <input type="hidden" name="_subject" value="New AirportOS Design Partner application" />
+            <input type="hidden" name="signup_source" value="AirportOS landing page" />
             <div class="form-row">
               <label>
                 Name
@@ -232,7 +234,7 @@
               <span>I'm interested in testing early prototypes or beta versions.</span>
             </label>
             <button class="button button-primary submit-button" type="submit">Join the Design Partner Program</button>
-            <p class="form-note" id="form-note">Your information will only be used for AirportOS research and project updates.</p>
+            <p class="form-note" id="form-note" role="status" aria-live="polite">Your information will only be used for AirportOS research and project updates.</p>
           </form>
         </div>
       </section>

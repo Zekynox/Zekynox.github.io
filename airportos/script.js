@@ -13,77 +13,46 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
 const form = document.getElementById('design-partner-form');
 const note = document.getElementById('form-note');
+const submitButton = form?.querySelector('button[type="submit"]');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+if (form) {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-  const data = new FormData(form);
-  const name = data.get('name')?.trim();
-  const email = data.get('email')?.trim();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-  if (!name || !email) {
-    note.textContent = 'Please enter your name and work email.';
-    note.className = 'form-note error';
-    return;
-  }
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting…';
+    note.textContent = 'Sending your Design Partner request…';
+    note.className = 'form-note';
 
-  // Temporary email fallback for the research-stage launch.
-  // Replace this block with your Formspree, Tally, Airtable, or CRM endpoint later.
-  const subject = encodeURIComponent('AirportOS Design Partner Interest');
-  const body = encodeURIComponent([
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Organization: ${data.get('organization') || ''}`,
-    `Role: ${data.get('role') || ''}`,
-    `Interested in beta testing: ${data.get('beta_interest') === 'yes' ? 'Yes' : 'No'}`,
-    '',
-    'What should be easier:',
-    data.get('challenge') || ''
-  ].join('\n'));
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          Accept: 'application/json'
+        }
+      });
 
-  window.location.href = `mailto:ezekiel@ezdavis.com?subject=${subject}&body=${body}`;
-  note.textContent = 'Your email app should open with the information ready to send.';
-  note.className = 'form-note success';
-});
+      if (!response.ok) {
+        throw new Error('Formspree rejected the submission.');
+      }
 
-const network = document.getElementById('airportos-network');
-const networkCaption = document.getElementById('network-caption');
-const departmentNodes = document.querySelectorAll('.department-node');
-
-const departmentCopy = {
-  'Airport management': 'Management gains a clearer operational picture for faster decisions and fewer disconnected updates.',
-  'Airport operations': 'Operations can coordinate tasks, incidents, facilities, and daily activity from one shared workspace.',
-  'FBO and line service': 'FBO and line teams can receive service requests and keep status visible across the airport.',
-  'Maintenance': 'Maintenance issues, ownership, and progress stay connected to the people affected by them.',
-  'Tenants and businesses': 'Tenants and on-airport businesses receive relevant updates without chasing separate communication channels.',
-  'Guests and pilots': 'Guest and pilot requests can reach the right department faster, improving the airport experience.'
-};
-
-let activeTimer;
-departmentNodes.forEach((node) => {
-  const activate = () => {
-    clearTimeout(activeTimer);
-    departmentNodes.forEach((item) => item.classList.remove('is-active'));
-    node.classList.add('is-active');
-    networkCaption.textContent = departmentCopy[node.dataset.department];
-    networkCaption.classList.add('is-active');
-  };
-
-  const reset = () => {
-    activeTimer = setTimeout(() => {
-      node.classList.remove('is-active');
-      networkCaption.textContent = 'A concept for one shared operating layer connecting the people and departments that keep an airport moving.';
-      networkCaption.classList.remove('is-active');
-    }, 220);
-  };
-
-  node.addEventListener('mouseenter', activate);
-  node.addEventListener('focus', activate);
-  node.addEventListener('mouseleave', reset);
-  node.addEventListener('blur', reset);
-  node.addEventListener('click', activate);
-});
-
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  network?.classList.add('is-paused');
+      form.reset();
+      note.textContent = 'Thank you—your Design Partner request has been recorded.';
+      note.className = 'form-note success';
+    } catch (error) {
+      console.error(error);
+      note.textContent = 'The form could not be submitted. Please try again in a moment.';
+      note.className = 'form-note error';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  });
 }
