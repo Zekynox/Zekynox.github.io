@@ -56,3 +56,35 @@ if (form) {
     }
   });
 }
+
+const departmentCopy = {
+  'Airport management': 'Management: a clearer view of priorities, activity, and decisions across the airport.',
+  'Airport operations': 'Operations: shared tasks, coordination, and status updates in one workspace.',
+  'FBO and line service': 'FBO / Line: connect service requests and handoffs without relying on scattered messages.',
+  'Maintenance': 'Maintenance: make issues, ownership, and current status easier to see.',
+  'Tenants and businesses': 'Tenants: centralize updates, access needs, and communication with airport businesses.',
+  'Guests and pilots': 'Guests / Pilots: improve how requests are received, routed, and resolved.'
+};
+
+const networkCaption = document.getElementById('network-caption');
+const networkNodes = document.querySelectorAll('.department-node');
+const defaultNetworkCaption = networkCaption?.textContent.trim();
+
+networkNodes.forEach((node) => {
+  const showDepartment = () => {
+    networkNodes.forEach((item) => item.classList.remove('active'));
+    node.classList.add('active');
+    if (networkCaption) {
+      networkCaption.textContent = departmentCopy[node.dataset.department] || defaultNetworkCaption;
+    }
+  };
+
+  node.addEventListener('mouseenter', showDepartment);
+  node.addEventListener('focus', showDepartment);
+  node.addEventListener('click', showDepartment);
+});
+
+document.getElementById('airportos-network')?.addEventListener('mouseleave', () => {
+  networkNodes.forEach((item) => item.classList.remove('active'));
+  if (networkCaption) networkCaption.textContent = defaultNetworkCaption;
+});
