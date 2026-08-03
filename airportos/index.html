@@ -42,44 +42,67 @@
           <p class="microcopy">No purchase. No commitment. Just a chance to help shape what gets built.</p>
         </div>
 
-        <aside class="hero-visual reveal" aria-label="AirportOS research progress">
-          <div class="research-card">
-            <div class="research-header">
-              <div>
-                <span class="panel-kicker">AirportOS research</span>
-                <h2>We are finding the first problem worth solving.</h2>
-              </div>
-              <span class="status"><i></i> Active</span>
+        <aside class="hero-visual reveal" aria-label="AirportOS connects airport departments in one operating system">
+          <div class="circuit-board" id="airportos-network">
+            <div class="circuit-header">
+              <span class="panel-kicker">Connected airport operations</span>
+              <span class="status"><i></i> Network concept</span>
             </div>
 
-            <div class="research-progress" role="img" aria-label="Research process: listen, identify patterns, prototype, and beta test">
-              <div class="progress-step is-active">
-                <span class="step-marker">1</span>
-                <div><strong>Listen</strong><span>Interview airport professionals</span></div>
-              </div>
-              <div class="progress-step">
-                <span class="step-marker">2</span>
-                <div><strong>Find the pattern</strong><span>Identify the problem that repeats</span></div>
-              </div>
-              <div class="progress-step">
-                <span class="step-marker">3</span>
-                <div><strong>Prototype</strong><span>Test a focused solution</span></div>
-              </div>
-              <div class="progress-step">
-                <span class="step-marker">4</span>
-                <div><strong>Build with partners</strong><span>Run a real airport beta</span></div>
+            <div class="circuit-stage">
+              <svg class="circuit-lines" viewBox="0 0 640 520" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <filter id="circuitGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+
+                <path class="trace trace-1" pathLength="1" d="M320 260 H205 V122 H118" />
+                <path class="trace trace-2" pathLength="1" d="M320 260 H435 V122 H522" />
+                <path class="trace trace-3" pathLength="1" d="M320 260 H166 V260 H88" />
+                <path class="trace trace-4" pathLength="1" d="M320 260 H474 V260 H552" />
+                <path class="trace trace-5" pathLength="1" d="M320 260 H205 V398 H118" />
+                <path class="trace trace-6" pathLength="1" d="M320 260 H435 V398 H522" />
+
+                <circle class="pulse pulse-1" r="5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M320 260 H205 V122 H118" /></circle>
+                <circle class="pulse pulse-2" r="5"><animateMotion dur="4.1s" begin="-.8s" repeatCount="indefinite" path="M320 260 H435 V122 H522" /></circle>
+                <circle class="pulse pulse-3" r="5"><animateMotion dur="3.3s" begin="-1.4s" repeatCount="indefinite" path="M320 260 H166 V260 H88" /></circle>
+                <circle class="pulse pulse-4" r="5"><animateMotion dur="3.9s" begin="-2.1s" repeatCount="indefinite" path="M320 260 H474 V260 H552" /></circle>
+                <circle class="pulse pulse-5" r="5"><animateMotion dur="4.4s" begin="-1.1s" repeatCount="indefinite" path="M320 260 H205 V398 H118" /></circle>
+                <circle class="pulse pulse-6" r="5"><animateMotion dur="3.7s" begin="-2.8s" repeatCount="indefinite" path="M320 260 H435 V398 H522" /></circle>
+              </svg>
+
+              <button class="department-node node-manager" type="button" data-department="Airport management" aria-label="Airport management connected to AirportOS">
+                <span class="node-dot"></span><strong>Management</strong><small>Visibility & decisions</small>
+              </button>
+              <button class="department-node node-operations" type="button" data-department="Airport operations" aria-label="Airport operations connected to AirportOS">
+                <span class="node-dot"></span><strong>Operations</strong><small>Tasks & coordination</small>
+              </button>
+              <button class="department-node node-fbo" type="button" data-department="FBO and line service" aria-label="FBO and line service connected to AirportOS">
+                <span class="node-dot"></span><strong>FBO / Line</strong><small>Service requests</small>
+              </button>
+              <button class="department-node node-maintenance" type="button" data-department="Maintenance" aria-label="Maintenance connected to AirportOS">
+                <span class="node-dot"></span><strong>Maintenance</strong><small>Issues & status</small>
+              </button>
+              <button class="department-node node-tenants" type="button" data-department="Tenants and businesses" aria-label="Tenants and businesses connected to AirportOS">
+                <span class="node-dot"></span><strong>Tenants</strong><small>Updates & access</small>
+              </button>
+              <button class="department-node node-guests" type="button" data-department="Guests and pilots" aria-label="Guests and pilots connected to AirportOS">
+                <span class="node-dot"></span><strong>Guests / Pilots</strong><small>Requests & experience</small>
+              </button>
+
+              <div class="cpu-core" aria-label="AirportOS central operating system">
+                <span class="cpu-pins" aria-hidden="true"></span>
+                <div class="cpu-chip">
+                  <span>Airport</span><strong>OS</strong><small>One connected workspace</small>
+                </div>
               </div>
             </div>
 
-            <div class="research-callout">
-              <span>Current question</span>
-              <p>What repeatedly makes airport managers' jobs harder than it should?</p>
-            </div>
-
-            <div class="research-footer">
-              <div><strong>Research stage</strong><span>No features chosen yet</span></div>
-              <div><strong>Design Partners</strong><span>Influence what comes first</span></div>
-            </div>
+            <p class="circuit-caption" id="network-caption">
+              A concept for one shared operating layer connecting the people and departments that keep an airport moving.
+            </p>
           </div>
         </aside>
       </section>
